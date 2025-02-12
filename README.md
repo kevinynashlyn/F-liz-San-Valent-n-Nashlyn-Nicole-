@@ -41,7 +41,6 @@
             border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
         }
 
         #btnSi {
@@ -69,15 +68,16 @@
 
         #nuevaPantalla h1, #nuevaPantalla p {
             color: #00bfff;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 191, 255, 1); /* Mejor contraste */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7), 0 0 15px rgba(0, 191, 255, 1);
             font-size: 2.5em;
-            font-weight: bold; /* Hace el texto más claro */
+            font-weight: bold;
         }
 
         .btn-container {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
+            gap: 20px;
         }
 
     </style>
@@ -133,26 +133,19 @@
             "Eres el amor de mi vida, dime que sí 💕"
         ];
 
-        // Reducir tamaño y hacer desaparecer el botón "No", y hacer crecer el "Sí"
+        // Cambia el mensaje cuando se presiona "No"
         btnNo.addEventListener('click', () => {
-            if (noCount < respuestasNo.length) { // Asegura que se elijan respuestas dentro del límite
+            if (noCount < respuestasNo.length) {
                 message.innerHTML = respuestasNo[noCount];
-                let scaleSizeNo = 1 - noCount * 0.05; // Reduce el tamaño del botón "No"
-                let scaleSizeSi = 1 + noCount * 0.05; // Aumenta el tamaño del botón "Sí"
-                btnNo.style.transform = `scale(${scaleSizeNo})`; // Cambia el tamaño del botón "No"
-                btnSi.style.transform = `scale(${scaleSizeSi})`; // Cambia el tamaño del botón "Sí"
                 noCount++;
-            } else {
-                btnNo.style.display = 'none'; // Elimina el botón "No" después de que se acaben las respuestas
             }
         });
 
         // Muestra la segunda pantalla cuando se presiona "Sí"
         btnSi.addEventListener('click', () => {
-            pantallaInicial.style.display = 'none'; // Ocultar la pantalla inicial
-            nuevaPantalla.style.display = 'flex'; // Mostrar la nueva pantalla
+            pantallaInicial.style.display = 'none';
+            nuevaPantalla.style.display = 'flex';
 
-            // Agregar las frases personalizadas al nuevo contenedor
             nuevaPantalla.innerHTML = `
                 <h1>¡Sabía que dirías que sí! ❤️✨</h1>
                 <p>Por eso te amo muchísimo</p>
